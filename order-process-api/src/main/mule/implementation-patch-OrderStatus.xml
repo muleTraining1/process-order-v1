@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd">
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="bdf8d0a7-b95b-4e6e-b711-122877f95c11" >
+		<http:request-connection host="anypoint.mulesoft.com" port="80" />
+	</http:request-config>
+	<flow name="implementation-patch-OrderStatusFlow" doc:id="31821221-d87e-4207-9c4a-3d6c5eb668cf" >
+		<http:request method="PATCH" doc:name="Request" doc:id="cc724e80-e138-4c9a-bdd3-72b2c50b700a" config-ref="HTTP_Request_configuration" path="/mocking/api/v1/links/58b09d13-28d8-4181-8492-344c31338542/orders/{order-id}">
+			<http:body ><![CDATA[#[{
+  "customerId": "1",
+  "status": "active"
+}]]]></http:body>
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"clientSecretKey" : "CS12",
+	"clientId" : "C12",
+	"X-session-id" : "s12",
+	"X-correlation-id" : "a12"
+}]]]></http:headers>
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	"order-id" : "1"
+}]]]></http:uri-params>
+		</http:request>
+	</flow>
+</mule>
