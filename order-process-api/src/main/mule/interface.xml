@@ -122,12 +122,14 @@ output application/json
         </error-handler>
     </flow>
     <flow name="patch:\orders\(order-id):application\json:order-process-api-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
+        <logger level="INFO" doc:name="Logger" doc:id="c3d098fa-d53e-4f58-bc02-ad8a7eab6712" message="patch started"/>
+		<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" doc:id="5c5e7665-2214-489b-b963-bf1fe359a8f5">
             <ee:variables>
-                <ee:set-variable variableName="order-id">attributes.uriParams.'order-id'</ee:set-variable>
+                <ee:set-variable variableName="order-id"><![CDATA[attributes.uriParams.'order-id']]></ee:set-variable>
             </ee:variables>
         </ee:transform>
         <logger level="INFO" message="patch:\orders\(order-id):application\json:order-process-api-config" />
+		<flow-ref doc:name="Flow Reference" doc:id="5d1258e3-7be9-452c-8157-6016a2e4d333" name="implementation-patch-OrderStatusFlow"/>
     </flow>
     <flow name="get:\orders:order-process-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
