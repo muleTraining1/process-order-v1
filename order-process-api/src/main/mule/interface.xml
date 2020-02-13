@@ -132,37 +132,12 @@ output application/json
 		<flow-ref doc:name="Flow Reference" doc:id="5d1258e3-7be9-452c-8157-6016a2e4d333" name="implementation-patch-OrderStatusFlow"/>
     </flow>
     <flow name="get:\orders:order-process-api-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-[
-  {
-    orderID: 1,
-    placementDate: "2019-12-12",
-    customerName: "Test",
-    customerId: 1,
-    status: "created",
-    emailId: "test@mail.com",
-    totalPrice: 92,
-    orderItem: [
-      {
-        itemId: 1,
-        itemName: "testItem",
-        price: 23.00,
-        quantity: 4
-      }
-    ]
-  }
-]]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="21d6364d-a639-4557-8ded-b11d01b0c46b" name="implementation-get-custEmailFlow" />
     </flow>
     <flow name="get:\orders\(order-id):order-process-api-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" doc:id="84ce2b0a-8860-4060-b43e-51be8e4706ca">
             <ee:variables>
-                <ee:set-variable variableName="order-id">attributes.uriParams.'order-id'</ee:set-variable>
+                <ee:set-variable variableName="order-id"><![CDATA[attributes.uriParams.'order-id']]></ee:set-variable>
             </ee:variables>
         </ee:transform>
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
@@ -191,7 +166,7 @@ output application/json
         </ee:transform>
     </flow>
     <flow name="post:\orders:application\json:order-process-api-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="8bdb960c-c2dd-4b3d-91f6-7e00b2e51960">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0
 output application/json
