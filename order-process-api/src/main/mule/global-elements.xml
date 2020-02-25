@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
 	<http:listener-config name="order-process-api-httpListenerConfig">
-        <http:listener-connection host="${http.connection.host}" port="${http.connection.port}" />
+        <http:listener-connection host="${secure::Http_Listener.connection.Host}" port="${secure::Http_Listener.connection.Port}" />
     </http:listener-config>
-	<configuration-properties doc:name="Configuration properties" doc:id="2f4cbe10-d8d6-4d3f-bdc7-0e72c8c98a95" file="dev.yaml" />
-	<http:request-config name="HTTP_Request_configuration1" doc:name="HTTP Request configuration" doc:id="234ab78a-fe45-4daa-9d88-145724aa5406" responseTimeout="10000">
-		<http:request-connection host="${http_getOrdersystemApi.connection.host}" port="${http_getOrdersystemApi.connection.port}"/>
-	</http:request-config>
 	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="d7f7ef2b-bf98-4271-8fbb-984974c9530f" >
-		<http:request-connection host="${http_getCustomerSystemApi.connection.host}" port="${http_getCustomerSystemApi.connection.port}"/>
-	</http:request-config>
+		<http:request-connection host="${secure::Http_Request.connection.Host}" port="${secure::Http_Request.connection.Port}"/>
+	</http:request-config> 
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="e7c1668b-aa9a-49f3-8171-53aa391595d1" file="dev.yaml" key="processapi123456" >
+		<secure-properties:encrypt algorithm="Blowfish" mode="ECB" />
+	</secure-properties:config>
 	
 </mule>

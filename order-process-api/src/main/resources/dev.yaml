@@ -1,16 +1,9 @@
-http:
+Http_Listener:
  connection:
-  host: "0.0.0.0"
-  port: "8081"
-  
-http_getCustomerSystemApi:
-  connection:
-    host: "anypoint.mulesoft.com"
-    port: "8081"
-    path: "/mocking/api/v1/links/f6743458-e5f8-46ad-95a0-46170430429d/customers"
-    
-http_getOrdersystemApi:
-  connection:
-    host: "localhost"
-    port: "8088"
-    path: "/api/systemOrder"
+  Host: "![KbJKsUWc8zrOoRzax5DA/Q==]"
+  Port: "![q8Lkzvfa6ck=]"
+
+Http_Request:
+ connection:
+  Host: "![KbJKsUWc8zrOoRzax5DA/Q==]"
+  Port: "![q8Lkzvfa6ck=]"
