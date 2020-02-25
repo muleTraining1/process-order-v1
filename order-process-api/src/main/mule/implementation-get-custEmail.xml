@@ -11,7 +11,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		<set-variable value="#[message.attributes.headers.'X-correlation-id']" doc:name="correlation_Id" doc:id="768d07ec-f20e-4a2f-80ae-eb0bcefc2b83" variableName="'X-correlation-id'"/>
 		<set-variable value="#[message.attributes.headers.'X-session-id']" doc:name="session_Id" doc:id="a7fb6cd0-75ee-4488-8307-bfa55e64490d" variableName="'X-session-id'"/>
 		<set-variable value="#[message.attributes.headers.clientSecretKey]" doc:name="clientSecretKey" doc:id="9e202e84-d9a9-4474-ae66-bab237696052" variableName="clientSecretKey"/>
-		<http:request method="GET" doc:name="Request" doc:id="9c1c50e7-d31f-4577-936e-3027e7663b02" config-ref="HTTP_Request_configuration" path="${http_getCustomerSystemApi.connection.path}">
+		<http:request method="GET" doc:name="Request" doc:id="9c1c50e7-d31f-4577-936e-3027e7663b02" config-ref="HTTP_Request_configuration" path="/api/customers">
 			<http:headers ><![CDATA[#[output application/java
 ---
 {
@@ -27,7 +27,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 }]]]></http:query-params>
 		</http:request>
 		<set-variable value="#[payload.customerId as Number]" doc:name="Customer_Id" doc:id="0678395b-26c8-457b-8511-0d5628345b1e" variableName="customerId"/>
-		<http:request method="GET" doc:name="Request" doc:id="a92be424-791b-4e43-a918-1a06ba533045" config-ref="HTTP_Request_configuration" path="${http_getOrdersystemApi.connection.path}">
+		<http:request method="GET" doc:name="Request" doc:id="a92be424-791b-4e43-a918-1a06ba533045" config-ref="HTTP_Request_configuration" path="/api/orders">
 			<http:headers ><![CDATA[#[output application/java
 ---
 {
