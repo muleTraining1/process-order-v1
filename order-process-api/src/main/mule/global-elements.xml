@@ -16,5 +16,6 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="e7c1668b-aa9a-49f3-8171-53aa391595d1" file="dev.yaml" key="processapi123456" >
 		<secure-properties:encrypt algorithm="Blowfish" mode="ECB" />
 	</secure-properties:config>
+	<configuration doc:name="Configuration" doc:id="6ac40f30-63e1-4744-add4-029c95dc4473" defaultErrorHandler-ref="Global_Error_Handler" />
 
 </mule>
