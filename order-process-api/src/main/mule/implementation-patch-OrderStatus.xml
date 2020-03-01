@@ -24,5 +24,10 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 }]]]></http:uri-params>
 		</http:request>
 		<logger level="INFO" doc:name="Logger" doc:id="fdede101-bef4-4437-90b2-6f0f68512ce5" message="Record Updated Flow End"/>
+		<error-handler>
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="cf236074-012f-4153-b1aa-79dfeffbb483" >
+				<flow-ref doc:name="Flow Reference" doc:id="5fbecf58-62cf-4604-8f26-4e956aa8ef7a" name="errorHandlingFlow"/>
+			</on-error-propagate>
+		</error-handler>
 	</flow>
 </mule>

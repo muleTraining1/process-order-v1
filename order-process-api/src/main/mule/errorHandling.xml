@@ -7,7 +7,7 @@
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	  <error-handler name="Global_Error_Handler">
             <on-error-propagate type="APIKIT:BAD_REQUEST">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="bb9aa9cd-ab07-4c35-baf4-3e3c2c2e3679">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -15,7 +15,7 @@ output application/json
 {message: "Bad request"}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">400</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[400]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
@@ -85,5 +85,20 @@ output application/json
                 </ee:transform>
             </on-error-propagate>
         </error-handler>
+	<flow name="errorHandlingFlow" doc:id="76469458-3834-423e-bee1-d5db7fbecc46" >
+		<ee:transform doc:name="Transform Message" doc:id="f36c8d12-5e67-4d28-8eda-d28160d7619e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	timestamp: now(),
+	errorType:error.errorType,
+	message:error.description,
+	mulemessage:error.muleMessage
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
 	
 </mule>
